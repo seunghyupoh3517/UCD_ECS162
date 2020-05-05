@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>bungsin-oh</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Dancing+Script|Homemade+Apple|Indie+Flower|Long+Cang&display=swap");
+      #container {
+        width: 1000px;
+        margin: 10px auto;
+        padding: 20px;
+      }
+      #header {
+        padding: 20px;
+        margin-bottom: 20px;
+        font-family: Dancing Script;
+        /* border: 1px solid #bcbcbc; */
+      }
+      
+      #postcard_wrap{
+        border-radius: 50px;
+        width: 100%;
+        text-align: center;
+        display: inline-flex;
+        height: 500px;
+        background-color: #e6e2cf;
+        height: 70%;
+      }
+      .dummyLine{
+        margin: 0em 1em 0em 1em;
+        flex-basis: 2px;
+        display: block;
+        background-color: #000000;
+      }
+      .content {
+        width: 50%;
+        min-height: 500px;
+      }
+      .content img{
+        width: 80%;
+        height: 70%;
+        display: none;
+        padding: 20px;
+      }
+      input#upload_file {
+        display: none;
+      }
+      #edit_wrap{
+        width: 100%;
+        height: 30%;
+        display: inline-flex;
+        padding-top: 20px;
+      }
+      #edit_area {
+        width: 33.3%;
+      }
+      #footer {
+        clear: both;
+        padding: 20px;
+        text-align: center;
+      }
+      textarea { 
+        width: 90%; 
+        margin: 0; 
+        padding: 20px; 
+        border-width: 0; 
+        height: 100%;
+        display: inline-block;
+        background-color: inherit;
+        outline-style: none;
+        font-family: Dancing Script;
+        font-size: 2em;
+      }
+      .square > div{
+          width: 50px;
+          height: 50px;
+          margin: 3%;
+          display: inline-block;
+      }
+      .square > div:hover{
+          border : 1px dashed  black;
+      }
+
+      #edit_area button{
+        margin: auto;
+        margin-top: 35%;
+        display: inherit;
+      }
+      #edit_area h2{
+        padding-left: 20px;
+        font-family: sans-serif;
+        font-weight: normal;
+        font-size: 2.0em;
+        /* \2756 */
+      }
+      #edit_area ul{
+        list-style-type: '\25C7';
+      }
+      #edit_area ul li{
+        padding-left: 10px;
+      }
+      #edit_area ul li:hover{
+        list-style-type: '\2756';
+      }
+      button{
+        border: 3px solid black;
+        background-color: rgba(0,0,0,0);
+        padding: 10px 20px 10px 20px;
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+      .content label {
+          display: inline-block;
+          text-align: center;
+          padding-top: 40%;
+          top:50%;
+          font-size: 2em;
+          flex-grow: 1;
+          height: 100%;
+          font-family: arial;
+          font-weight: bold;
+          color: #000000;
+      }
+      @media ( max-width: 480px ) {
+        #container {
+          width: auto;
+        }
+        #postcard_wrap{
+          float: none;
+          width: 100%;
+          display: inline-block;
+          height: auto;
+        }
+        .content {
+          float: none;
+          width: auto;
+          min-height : 250px;
+        }
+        textarea { 
+          width: 90%; 
+          margin: 0; 
+          padding: 20px; 
+          border-width: 0; 
+          min-height: 300px;
+          display: inline-block;
+          background-color: inherit;
+          outline-style: none;
+          font-size: 1.5em;
+        }
+        #edit_wrap{
+          display: inline-block;
+          padding-top: 20px;
+        }
+        #edit_area {
+          width:100%;
+        }
+
+        .square > div:hover{
+          border : 1px dashed  black;
+        }
+
+        #edit_area ul li:hover{
+          list-style-type: '\2756';
+        }
+
+        .dummyLine{
+          margin: 0em 1em 0em 1em;
+          flex-basis: 2px;
+          display: block;
+          background-color: #000000;
+          height: 1px;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="header">
+        <h1>Daily Postcards</h1>
+    </div>
+    <div id="container">
+        <div id="contents_wrap">
+            <div id="postcard_wrap" style="background-color: rgb(230, 226, 207);">
+              <div class="content">
+                  <!-- <img alt="" src="./images/bridge.jpg" id=""> -->
+                  <!-- 이미지 태그 스타일 먹이기 -->
+                  <!-- <input type="file"> -->
+                  <!-- 이미지 태그 스타일 먹이기 -->
+                  <img id="blah" src="" alt="image uploading"/>
+                
+                  <button type="button" style="display:none;">Replace Image</button>
+              </div>
+              <div class="dummyLine"></div>
+              <div id="class">
+                  <textarea id="select_font" style="font-family:Indie Flower;" placeholder="Write Your Message Here!"></textarea>
+              </div>
+
+            </div>
+        </div>
+      <div id="footer">
+        <p>Made On Glich!</p>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script type="text/javascript">
+
+getData();
+
+function getData(){
+  var xhr = new XMLHttpRequest();
+  var data = {
+   
+  };
+  xhr.onload = function() {
+    if (xhr.status === 200 || xhr.status === 201) {
+      console.log(xhr.response);
+
+      var cardData = new Object();
+      cardData = JSON.parse(xhr.response);
+      document.getElementById('postcard_wrap').style.backgroundColor = cardData.color;
+      document.getElementById('select_font').style.fontFamily = cardData.font;
+      document.getElementById('blah').src="./images/"+cardData.photo;
+      document.getElementById('select_font').value = cardData.message;
+      document.getElementById('blah').style.display ="inline-block";
+    } else {
+      console.error(xhr.response);
+    }
+  };
+  xhr.open('GET', '/getCardData');
+//   xhr.setRequestHeader('Content-Type', 'application/json'); // 컨텐츠타입을 json으로
+  xhr.send(); // 데이터를 stringify해서 보냄
+}
+
+</script>

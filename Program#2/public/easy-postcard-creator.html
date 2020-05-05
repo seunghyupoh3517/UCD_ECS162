@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>bungsin-oh</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+  </head>
+  <body>
+    <div id="header">
+        <h1>Daily Postcards Creator</h1>
+    </div>
+    <div id="container">
+
+        <div id="contents_wrap">
+            <div id="postcard_wrap" style="background-color: rgb(230, 226, 207);">
+              <div class="content">
+                  <!-- <img alt="" src="./images/bridge.jpg" id=""> -->
+                  <!-- 이미지 태그 스타일 먹이기 -->
+                  <!-- <input type="file"> -->
+                  <!-- 이미지 태그 스타일 먹이기 -->
+                  <img id="blah"/>
+                  <label id="labelId" for="upload_file">Choose Image</label>
+                  <input type='file' id="upload_file" name="upload_file" visbility="hidden" onchange="imageUpdateAjax(this)"/>
+
+                  <button id="replaceId" type="button" style="display:none;" onclick="triggerUploadFile()">Replace Image</button>
+              </div>
+              <div class="dummyLine"></div>
+              <div class="content">
+                  <textarea id="select_font" style="font-family:Indie Flower;" placeholder="Write Your Message Here!"></textarea>
+              </div>
+
+            </div>
+        </div>
+
+      <div id="edit_wrap">
+          <div id="edit_area">
+            <h2>Choose your font</h2>
+            <ul class="choose_font">
+              <li>
+                  <span style="font-family:Indie Flower; font-size:30px;">Indie Flower</span>
+              </li>
+              <li>
+                <span style="font-family:Dancing Script; font-size:30px;">Dancing Script</span>
+              </li>
+              <li>
+                <span style="font-family:Lang Cang; font-size:30px;">Lang Cang</span>
+              </li>
+              <li>
+                <span style="font-family:Homemade Apple; font-size:30px;">Homemade Apple</span>
+              </li>
+            </ul>
+          </div>
+          <div id="edit_area">
+              <h2>Choose your color</h2>
+              <div class="square" color-value="#e6e2cf">
+                <div color-value="#e6e2cf" style="background-color:#e6e2cf; border:1px solid black"></div>
+                <div color-value="#dbcaac" style="background-color:#dbcaac;"></div>
+                <div color-value="#c9cbb3" style="background-color:#c9cbb3"></div>
+                <div color-value="#00464B" style="background-color:#00464B"></div>
+                <div color-value="#a6a5b5" style="background-color:#a6a5b5;"></div>
+                <div color-value="#b5a6ab" style="background-color:#b5a6ab;"></div>
+                <div color-value="#eccfcf" style="background-color:#eccfcf;"></div>
+                <div color-value="#eceeeb" style="background-color:#eceeeb;"></div>
+                <div color-value="#bab9b5" style="background-color:#bab9b5;"></div>
+              </div>
+          </div>
+          <div id="edit_area">
+              <button type="button" onclick="sendPostCardAjax(this)">Share Postcards</button>
+          </div>
+      </div>
+
+
+      <div id="footer">
+        <p>Made On Glich!</p>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script type="text/javascript">
+
+//편지지 폰트 클릭 이벤트
+var fonts = document.getElementsByClassName('choose_font')[0].children;
+for(var i = 0 ; i < fonts.length; i++){
+  // fonts[i].style.fontFamily = fonts[i].textContent 폰트 이벤트 하드코딩안하고 할시
+  fonts[i].addEventListener( 'click', function(index) {
+    var font = document.getElementById('select_font');
+    font.style.fontFamily = this.textContent.trim();
+  });
+}
+
+//편지지색 클릭 이벤트
+var chooseColors = document.getElementsByClassName('square')[0].children;
+for(var i = 0 ; i < chooseColors.length; i++){
+    chooseColors[i].addEventListener( 'click', function(index) { 
+    var backgroundColor = document.getElementById('postcard_wrap');
+    backgroundColor.style.backgroundColor = this.style.backgroundColor;
+    this.parentElement.setAttribute('color-value',this.getAttribute('color-value')); //부모태그에 color-value 넣어주기
+    removeBorder(this); //다른편지지색 선택시 기존 선택된 편지지 테두리 제거
+    this.style.border="1px solid black";
+  });
+}
+
+//다른편지지색 선택시 기존 선택된 편지지 테두리 제거
+function removeBorder(obj){
+  for(var i = 0 ; i < chooseColors.length; i++){
+    obj.parentNode.children[i].style.border="";   
+  }
+}
+
+//replace 버튼클릭시 파일업로드실행
+document.getElementById('replaceId').addEventListener('click', () => {
+  document.getElementById('upload_file').click()
+})
+
+//이미지 서버전송
+function imageUpdateAjax(obj){
+  var filedata = new FormData(); // FormData 인스턴스 생성
+  filedata.append('uploadfile', obj.files[0]); //uploadfile 서버.js multer.single 이름과동일하게
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/upload', true); //post 방식, url, 비동기여부
+  xhr.onload = function(event) {
+    if (xhr.status == 200) {
+      var imageName = xhr.response; //서버로부터 받은 이미지 파일명
+      document.getElementById('blah').src="./images/"+imageName;
+      document.getElementById('blah').style.display ="inline-block";
+      document.getElementById('replaceId').style.display = "";
+      document.getElementById("labelId").style.display = 'none';
+    }
+    else {
+      console.log("서버저장 실패오류");
+    }
+  };
+  xhr.send(filedata);
+}
+
+function sendPostCardAjax(obj){
+  var xhr = new XMLHttpRequest();
+  var data = {
+    message: document.getElementById('select_font').value,
+    font: document.getElementById('select_font').style.fontFamily.substring(1,document.getElementById('select_font').style.fontFamily.length-1),
+    color: document.getElementsByClassName('square')[0].getAttribute('color-value'),
+    photo: (document.getElementById('blah').src).replace(/^.*[\\\/]/, '')
+  };
+  xhr.onload = function() {
+    if (xhr.status === 200 || xhr.status === 201) {
+      console.log(xhr.responseText);
+      location.href = "/easy-postcard-display.html";
+    } else {
+      console.error(xhr.responseText);
+    }
+  };
+  xhr.open('POST', '/share');
+  xhr.setRequestHeader('Content-Type', 'application/json'); // 컨텐츠타입을 json으로
+  xhr.send(JSON.stringify(data)); // 데이터를 stringify해서 보냄
+}
+
+</script>
