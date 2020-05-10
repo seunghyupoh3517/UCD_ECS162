@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Grandma's Shopping List</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A cool thing made with Glitch">
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+	<!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- import the webpage's client-side javascript file 
+	defer: a script that will not run until after the page ahs loaded-->
+    <script src="script.js" defer></script>
+</head>
+<body>
+	<header>
+		<h2>Groceries for Grandma</h2>
+	</header>
+
+	<main>
+		<p class = "note">Gran: you can add to your list here. I will go shopping on Sunday - Love, Lee</p>
+
+		<div id = "addBox">
+			<p>Get me:</p>
+			<input name = "itemName" type = "text" maxlength="200">
+		</div>
+
+		<div id = "buttonBox">
+			<button id = "submitButton">Add to list</button>
+		</div>
+
+		<section class = "groceries">
+			<ul id = "gransList">
+			</ul>
+		</section>
+	</main>
+</body>
+</html>

@@ -1,0 +1,47 @@
+*{
+	box-sizing: border-box;
+}
+
+body{
+	margin: 16px;
+	line-height: 1.5em;
+}
+
+header{
+	padding-bottom: 4px;
+}
+
+main{
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+}
+
+div#addBox{
+	display: flex;
+	flex-direction: row;
+}
+
+div#addBox > input{
+	border: 1px solid silver;
+	display: block;
+	flex-grow: 1;
+	font-size: 16px;
+	margin-bottom: 10px;
+	padding: 5px;
+}
+
+div#buttonBox{
+	display: flex;
+	flex-direction: row-reverse;
+}
+
+button#submitButton{
+	background-color: #bbbbf2;
+	border: 2px solid black;
+	border-radius: .25em;
+	cursor: pointer;
+	line-height: 1.4em;
+	padding: 0.25em 1em;
+	max-width: 10em;
+}
