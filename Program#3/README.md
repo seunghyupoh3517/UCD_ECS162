@@ -1,7 +1,4 @@
-# Daily Postcard Solution
-
-There are many ways to implement this app; this code shows one way, not
-necessarily the best, but certainly good.
-
+Using API Sever (Media Storage), expree, multer, sqlite3, form-data, (response, request)
+//https://web.cs.ucdavis.edu/~amenta/s20/DBpostcard.html
 
   
