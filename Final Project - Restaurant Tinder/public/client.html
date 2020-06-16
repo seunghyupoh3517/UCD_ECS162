@@ -1,0 +1,107 @@
+<!-- Player Page (for the players & host) -->
+
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Restaurant Tinder by Foodie-Simp</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A cool thing made with Glitch">
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <!-- Star from fontawesome-->
+    <script src="https://kit.fontawesome.com/5c9103433f.js" ></script>
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- import the webpage's client-side javascript file -->
+    <script src="/client.js" defer></script>
+  </head>
+  
+  <body>
+    <!-------------------- code from Websocket examples
+    <main>
+      <p>
+        Chat participant.
+      </p>
+      <p>
+        Say something: <input type="text" id="newMsg">
+      </p>
+      <div id="messages"></div>
+    </main>
+    ------------------------------------------------>
+    <!-- loading message, waiting callback from YELP -->
+    <!-- wait until to be called -->
+    <div id="round" class="hidden">
+        Round 1
+    </div>
+    <div id="progress">
+        Waiting for other players...
+    </div>
+    
+    <main id="restSection" class="restSection hidden">
+      <div id="restLeft" class="restaurant">
+        <div id="leftImg" class= "image" >
+        </div>
+        
+        <h2 id= "leftName" class="name">
+           Restaurant Name
+        </h2>
+        <p id="leftPrice" class = "price">
+           Price
+        </p>
+         <!-- https://www.w3schools.com/icons/tryit.asp?filename=tryicons_fa-star-o -->
+        <div id= "leftStars" class="stars">
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+        <p id="leftAddress" class="address">
+          Davis, CA
+        </p>
+        <a id="leftReviews" class="reviews"  href="#">Reviews</a>
+        <img id="leftLike" class="heart" src="https://cdn.glitch.com/c0ab0829-65b3-4265-ab99-89cae83eb9d7%2FheartButton.svg?v=1590700512613">
+      </div>
+      
+      <div id="restRight" class="restaurant">
+        <div id="rightImg" class= "image" >
+        </div>
+        
+        <h2 id= "rightName" class="name">
+           Restaurant Name
+        </h2>
+        <p id="rightPrice" class = "price">
+           Price
+        </p>
+         <!-- https://www.w3schools.com/icons/tryit.asp?filename=tryicons_fa-star-o -->
+        <div id= "rightStars" class="stars">
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+        <p id="rightAddress" class="address">
+          Davis, CA
+        </p>
+        <a id="rightReviews" class="reviews" href="#">Reviews</a>
+        <img id="rightLike" class="heart" src="https://cdn.glitch.com/c0ab0829-65b3-4265-ab99-89cae83eb9d7%2FheartButton.svg?v=1590700512613">
+      </div>
+      
+      
+    </main>
+  
+    <footer>Made with <a href="https://glitch.com">Glitch</a>!</footer>
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:2em;right:20px;"></div>
+    
+  </body>
+  <script src="https://button.glitch.me/button.js"></script>
+</html>

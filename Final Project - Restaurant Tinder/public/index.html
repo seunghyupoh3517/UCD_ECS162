@@ -1,0 +1,136 @@
+<!-- Home Page (for the host)  -->
+
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Restaurant Tinder Hosting</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A cool thing made with Glitch">
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+     <!-- Star from fontawesome-->
+    <script src="https://kit.fontawesome.com/5c9103433f.js" ></script>
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    <!-- import the webpage's client-side javascript file -->
+   
+  </head>
+  
+  <body>
+    <header id="header">
+   <img id="logo" src="https://cdn.glitch.com/68336a22-f722-445e-8558-2835a264f470%2FTinderLogo-2017.svg?v=1591521218097">
+    </header>
+    
+    <p id="tit">
+        RESTAURANT TINDER PRESENTED BY FOODIE_SIMP_ECS162
+    </p>
+    <div id="linkDiv">
+      <div class="buttonDiv">
+        <button id="startGame">
+          Start Game!
+        </button>
+      </div>
+    </div>
+
+    <main id="categoryDiv" class= "hidden">
+      <p id="instruction">      
+        Send this link to other friends so that they can join the Restaurant tinder: 
+        <a id="link" href="client.html" target="_blank">tinder-websocket-final.glitch.me/client.html</a>   
+        They can open the link in a new incognito window, or maybe on your phone or another computer.
+      </p>
+      
+      <div id="searchTermsDiv">
+        <p class="type">Keyword: </p>
+      
+        <input type="text" id="newMsg" placeholder="Cuisine" list="searchTerms">
+        <datalist id="searchTerms">
+        </datalist>
+      
+        <p class="type">
+          Location: 
+        </p>
+        <input type="text" id="newMsg2" placeholder="Davis" list="locationTerm">
+          <datalist id="locationTerm">
+          </datalist>
+      </div>
+      
+      <div class="buttonDiv">
+        <button id="submit">
+          Get restaurants!
+        </button>
+      </div>
+      <div id="messages"></div>
+      
+    </main>
+    
+    <div id="round" class="hidden">
+        Round 1
+    </div>
+    <div id="progress" class="hidden">
+        Loading!!
+    </div>
+    
+    <main id="restSection" class= "restSection hidden">
+      <div id="restLeft" class="restaurant">
+        <div id="leftImg" class= "image" >
+        </div>
+        
+        <h2 id= "leftName" class="name">
+           Restaurant Name
+        </h2>
+        <p id="leftPrice" class = "price">
+           Price
+        </p>
+        <!-- https://mdbootstrap.com/docs/jquery/content/icons-usage/ -->
+        <!-- https://www.w3schools.com/icons/tryit.asp?filename=tryicons_fa-star-o -->
+        <div id= "leftStars" class="stars">
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+        <p id="leftAddress" class="address">
+          Davis, CA
+        </p>
+        <!-- target to the top of the window but aims to operate with ankor attribute to open up a new window -->
+        <a id="leftReviews" class="reviews" href="#" target="_blank">Reviews</a>
+        <img id="leftLike" class="heart" src="https://cdn.glitch.com/c0ab0829-65b3-4265-ab99-89cae83eb9d7%2FheartButton.svg?v=1590700512613">
+      </div>
+      
+      <div id="restRight" class="restaurant">
+        <div id="rightImg" class= "image" >
+        </div>
+        
+        <h2 id= "rightName" class="name">
+           Restaurant Name
+        </h2>
+        <p id="rightPrice" class = "price">
+           Price
+        </p>
+        <!-- https://mdbootstrap.com/docs/jquery/content/icons-usage/ -->
+        <!-- https://www.w3schools.com/icons/tryit.asp?filename=tryicons_fa-star-o -->
+        <div id= "rightStars" class="stars">
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+        <p id="rightAddress" class="address">
+          Davis, CA
+        </p>
+        <!-- target to the top of the window but aims to operate with ankor attribute to open up a new window -->
+        <a id="rightReviews" class="reviews" href="#" target="_blank">Reviews</a>
+        <img id="rightLike" class="heart" src="https://cdn.glitch.com/c0ab0829-65b3-4265-ab99-89cae83eb9d7%2FheartButton.svg?v=1590700512613">
+      </div>
+    </main>
+     
+    <footer>Made with <a href="https://glitch.com">Glitch</a>!</footer>
+    
+  </body>
+<script src="/script.js" defer></script>
+</html>
